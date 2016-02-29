@@ -4,8 +4,8 @@ class SessionsController < ApplicationController
 
   def create
     #find the user by their email
-    user = User.where(email: params[:email]).first
-    if user && user.authenticate(params[:password])
+    user = User.where(email: params[:user][:email]).first
+    if user && user.authenticate(params[:user][:password])
       cookies.permanent[:auth_token] = user.auth_token
      redirect_to '/battlechat'
     else
@@ -18,6 +18,5 @@ class SessionsController < ApplicationController
     cookies.delete(:auth_token)
     flash[:notice] = "Successfully logged out!"
     redirect_to '/'
-
   end
 end
