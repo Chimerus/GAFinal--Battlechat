@@ -8,6 +8,39 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
   </head>
+  <div class="container">
+        <% if current_user %>
+          <a class="navbar" href="/battlechat">Battlechat</a>
+        <% else %>
+          <a class="navbar" href="/">Battlechat</a>
+        <% end %>
+          <div class="navbar right">
+            <% if current_user %>
+              <h5>
+                Welcome <a href="/users/<%= current_user['id'] %>"><%= current_user['name'] %></a>!
+                <a id="logout" href="/logout">Logout</a>
+              </h5>
+            <% else %>
+              <a href="/users/new">
+                Sign Up!
+              </a><span>|</span>
+              <a href="/login" >Sign-In</a>
+            <% end %>
+          </div>
+        </div>
+
+  <div class="container" style="margin-left: 0; ">
+   <% flash.each do |key, value| %>
+  <div style="margin-right: 26px; " class="alert alert-info">
+   <a href="#" data-dismiss="alert" class="close">X</a>
+     <ul  style="list-style: none ;">
+       <li style= "list_style: none;">
+       <%= value %>
+        </li>
+       </ul>
+  </div>
+  <% end %>
+  </div>
 
   <body>
     <%= yield %>

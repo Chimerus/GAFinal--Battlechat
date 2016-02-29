@@ -6,7 +6,7 @@
 </div>
 
 <form>
-  <input type="text" id="user" placeholder="Username">
-    <br />
+  <input type="text" id="user" value="<%= current_user['name'] %>" hidden>
+    <br>
   <textarea id ="say" data-behavior="room_speaker" placeholder="Say Something"></textarea>
 </form>
