@@ -8,5 +8,10 @@
 #= require_tree ./channels
 #
 
-@App ||= {}
-App.cable = ActionCable.createConsumer()
+# @App ||= {}
+# App.cable = ActionCable.createConsumer()
+
+$(document).on 'ready page:load', ->
+  if $('body[data-login="true"]').length
+    window.App ||= {}
+    window.App.cable = ActionCable.createConsumer()
