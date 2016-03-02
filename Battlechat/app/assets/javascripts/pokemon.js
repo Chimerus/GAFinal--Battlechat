@@ -1,13 +1,24 @@
 "use strict";
 
 class Pokemon{
-	constructor(p1, p2) {
+  constructor(p1, p2) {
+	// constructor(p1, p2, thisp) {
 		this.p1 = p1
 		console.log(p1)
 		this.p2 = p2
 		console.log(p2)
-    this.player1 = ['Pikachu', 'images/pikachu.png',100,1]
-    this.player2 = ['Kabutops','images/kabutops.png',100,1]
+    // this.thisPlayer = thisp
+    // console.log(thisp)
+    // if (p1 == thisp) {
+      // this.player1 = ['Pikachu', 'images/pikachu.png',100,1]
+      // this.player2 = ['Kabutops','images/kabutops.png',100,1]
+    // } else {
+    //   this.player2 = ['Pikachu', 'images/pikachu.png',100,1]
+    //   this.player1 = ['Kabutops','images/kabutops.png',100,1]
+    // }
+
+      this.player1 = ['Pikachu', 'images/pikachuBack.png',100,1]
+      this.player2 = ['Pikachu', 'images/pikachu.png',100,1]
   }
 
   // chooseEnemy() {
@@ -32,13 +43,11 @@ class Pokemon{
   $("#status_text").text("I choose you, "+this.player2[0]+ "!");
   }
 
-  attack(player){
-    if (player == "Red"){
-      // console.log("Red Attacks!");
-      this.redAttack();
-    } else {
-      this.blueAttack();
-    }
+  // attack(player){
+  attack(){
+    $("div#enemy p.health").text("Health: "+ this.p1.hp);
+
+    $("div#player p.health").text("Health: "+ this.p2.hp);
   }
 
 

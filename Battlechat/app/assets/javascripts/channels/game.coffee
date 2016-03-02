@@ -16,13 +16,16 @@ $(document).on 'ready page:load', ->
             @printMessage("Game started!")
             # new game
             @pokemon = new Pokemon(data.p1,data.p2)
+            console.log(data.p1) 
+            console.log(data.p2) 
+            console.log(@player) 
             $(document).on "click","#attack_btn", => 
               @perform 'attack', {}
             $('#bg_image').show()
             @pokemon.game_start()
             
           when "attacking"
-            @pokemon.attack(data.atk)
+            @pokemon.attack()
             @gameLog(data.msg)
           when "opponent_forfeits"
             @printMessage("Opponent forfeits. You win!")

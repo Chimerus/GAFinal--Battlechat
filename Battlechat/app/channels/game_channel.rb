@@ -21,7 +21,7 @@ class GameChannel < ApplicationCable::Channel
     else
       activePlayer = "Blue"
     end
-    # @player.attack(@player.opponent)
+    @player.attack(@player.opponent)
     @game.attacking(activePlayer,"clicked attack")
   end
 end

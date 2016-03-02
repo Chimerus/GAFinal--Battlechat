@@ -81,7 +81,6 @@ class Game
 
   def attacking(uuid, data)
     # opponent = Game.opponent_for(uuid)
-    # @player1_hp -= 10;
     move_string = "#{uuid} HAS #{data}"
     ActionCable.server.broadcast @id, {action: "attacking", msg: move_string, atk: uuid}
   end
