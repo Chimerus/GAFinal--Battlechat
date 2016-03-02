@@ -1,6 +1,14 @@
 class Player
-  def initialize(id="#{Player.player_prefix}#{SecureRandom.base64()}")
+  def initialize(id="#{Player.player_prefix}#{SecureRandom.uuid}")
     @id = id
+  end
+
+  # def initialize(id="#{}")
+  #   @id = id
+  # end
+
+  def connection_id
+    @id.gsub(Player.player_prefix, '')
   end
 
   def id

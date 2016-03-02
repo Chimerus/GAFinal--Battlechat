@@ -16,6 +16,10 @@ class Game
     REDIS.lrange(@id, 0, 2)
   end
 
+  def players
+    users.map { |user| Player.find(user) }
+  end
+
   def leave(user_id)
     players = REDIS.lrange(@id, 0, 2).reject do |id|
       id == user_id
@@ -50,6 +54,7 @@ class Game
     av_game = self.available_game
     if av_game
       av_game.join(user_id)
+      # 2 people here, start the game!
       return av_game
     else
       game = Game.new
@@ -58,19 +63,17 @@ class Game
     end
   end
 
-  def self.start(uuid1, uuid2)
-    p1, p2 = [uuid1, uuid2].shuffle
+  def start(player1, player2)
+    binding.pry
+    ActionCable.server.broadcast @id, { action: "game_start", msg: "this works" }
 
-    ActionCable.server.broadcast "player_#{p1}", {action: "game_start", msg: "p1"}
-    ActionCable.server.broadcast "player_#{p2}", {action: "game_start", msg: "p2"}
-
-    REDIS.set("opponent_for:#{p1}", p1)
-    REDIS.set("opponent_for:#{p2}", p2)
+    REDIS.set("opponent_for:#{player1.id}", player1.id)
+    REDIS.set("opponent_for:#{player2.id}", player2.id)
   end
 
   def self.forfeit(uuid)
     if winner = opponent_for(uuid)
-      ActionCable.server.broadcast "player_#{winner}", {action: "opponent_forfeits"}
+      #ActionCable.server.broadcast "#{}", {action: "opponent_forfeits"}
     end
   end
 

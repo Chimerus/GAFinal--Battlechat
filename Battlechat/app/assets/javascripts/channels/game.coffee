@@ -10,12 +10,13 @@ $(document).on 'ready page:load', ->
         @printMessage("Game Over")
       received: (data) ->
         # Called when there's incoming data on the websocket for this channel
-        # runs when client recieves a msg from channel
+        # runs when client receives a msg from channel
         switch data.action
           when "game_start"
             # App.board.position("start")
             # App.board.orientation(data.msg)
-            pokemon()
+            console.log(data.msg)
+            pokemon = new Pokemon()
             $('#bg_image').show()
             @printMessage("Game started! You play as #{data.msg}.")
             
@@ -26,4 +27,4 @@ $(document).on 'ready page:load', ->
             @printMessage("Opponent forfeits. You win!")
 
       printMessage: (message) ->
-        $("#gamestate").append("<p>#{message}</p>")
+        $("#gamestate").html("<p>#{message}</p>")

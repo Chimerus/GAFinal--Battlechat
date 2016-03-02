@@ -11,13 +11,13 @@
 
   <body data-login="<%= logged_in? %>">
 
-  <div class="container">
+  <div class="navbar">
         <% if current_user %>
-          <a class="navbar" href="/battlechat">Battlechat</a>
+          <a href="/battlechat">Battlechat</a>
         <% else %>
-          <a class="navbar" href="/">Battlechat</a>
+          <a href="/">Battlechat</a>
         <% end %>
-          <div class="navbar right">
+          <div class="right">
             <% if current_user %>
               <h5>
                 Welcome <a href="/users/<%= current_user['id'] %>"><%= current_user['name'] %></a>!
@@ -30,7 +30,7 @@
               <button id="myBtn">Sign-In</button>
             <% end %>
           </div>
-        </div>
+  </div>
 
   <div class="container" style="margin-left: 0; ">
    <% flash.each do |key, value| %>
