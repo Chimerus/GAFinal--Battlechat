@@ -54,7 +54,6 @@ class Game
     av_game = self.available_game
     if av_game
       av_game.join(user_id)
-      # 2 people here, start the game!
       return av_game
     else
       game = Game.new
@@ -64,16 +63,15 @@ class Game
   end
 
   def start(player1, player2)
-    binding.pry
-    ActionCable.server.broadcast @id, { action: "game_start", msg: "this works" }
+    ActionCable.server.broadcast @id, { action: "game_start", msg: "Game Start!", p1: player1, p2: player2}
 
-    REDIS.set("opponent_for:#{player1.id}", player1.id)
-    REDIS.set("opponent_for:#{player2.id}", player2.id)
+    REDIS.set("opponent_for:#{player1}", player2)
+    REDIS.set("opponent_for:#{player2}", player1)
   end
 
   def self.forfeit(uuid)
     if winner = opponent_for(uuid)
-      #ActionCable.server.broadcast "#{}", {action: "opponent_forfeits"}
+      ActionCable.server.broadcast "#{}", {action: "opponent_forfeits"}
     end
   end
 
@@ -81,10 +79,10 @@ class Game
     REDIS.get("opponent_for:#{uuid}")
   end
 
-  def self.make_move(uuid, data)
-    opponent = opponent_for(uuid)
-    move_string = "#{data["from"]}-#{data["to"]}"
-
-    ActionCable.server.broadcast "player_#{opponent}", {action: "make_move", msg: move_string}
+  def attacking(uuid, data)
+    # opponent = Game.opponent_for(uuid)
+    # @player1_hp -= 10;
+    move_string = "#{uuid} HAS #{data}"
+    ActionCable.server.broadcast @id, {action: "attacking", msg: move_string, atk: uuid}
   end
 end

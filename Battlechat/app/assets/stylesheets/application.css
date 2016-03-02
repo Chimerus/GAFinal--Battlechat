@@ -113,24 +113,24 @@
 }
 
 
-#pikachu{
+#player{
   position: absolute;
   height:110px;
   width:100%;
   margin-top:148px;
 }
-#pikachu_img{
+#player_img{
   position: absolute;
   width:150px;
   left:50px;
   margin-right: 0px;
 }
-#pikachu p{
+#player p{
   margin-left: 285px;
   margin-bottom:0;
   margin-top:0;
 }
-#pikachu .name{
+#player .name{
   margin-top:40px;
 
 }

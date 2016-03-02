@@ -13,18 +13,22 @@ $(document).on 'ready page:load', ->
         # runs when client receives a msg from channel
         switch data.action
           when "game_start"
-            # App.board.position("start")
-            # App.board.orientation(data.msg)
-            console.log(data.msg)
-            pokemon = new Pokemon()
+            @printMessage("Game started!")
+            # new game
+            @pokemon = new Pokemon(data.p1,data.p2)
+            $(document).on "click","#attack_btn", => 
+              @perform 'attack', {}
             $('#bg_image').show()
-            @printMessage("Game started! You play as #{data.msg}.")
+            @pokemon.game_start()
             
-          when "make_move"
-            # ...
-            @printMessage("move made")
+          when "attacking"
+            @pokemon.attack(data.atk)
+            @gameLog(data.msg)
           when "opponent_forfeits"
             @printMessage("Opponent forfeits. You win!")
 
       printMessage: (message) ->
         $("#gamestate").html("<p>#{message}</p>")
+
+      gameLog: (message) ->
+        $("#gamestate2").append("<p>#{message}</p>")

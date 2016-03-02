@@ -1,11 +1,9 @@
 class Player
   def initialize(id="#{Player.player_prefix}#{SecureRandom.uuid}")
     @id = id
+    # @hp = 100
+    # @attack = 10
   end
-
-  # def initialize(id="#{}")
-  #   @id = id
-  # end
 
   def connection_id
     @id.gsub(Player.player_prefix, '')
@@ -28,6 +26,10 @@ class Player
       return Player.find(player_id)
     end
     return nil
+  end
+
+  def attack(opponent)
+    opponent.hp -= self.attack
   end
 
   def current_game
