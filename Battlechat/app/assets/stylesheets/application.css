@@ -157,30 +157,39 @@
 #status_text{
   position: absolute;
   height:65px;
-  width:65%;
+  width:55%;
   text-align: center;
   left:5%;
   top:290px;
   color:white;
 
 }
-#attack_btn{
+
+.btn {
   cursor: pointer;
   color: white;
   border:1px solid;
   position: absolute;
-  left:75%;
-  width:20%;
+  width:15%;
   text-align: center;
+}
+
+.attack {
+  left:62%;
   top:263px;
 }
-#heal_btn{
-  cursor: pointer;
-  color: white;
-  border:1px solid;
-  position: absolute;
-  left:75%;
-  width:20%;
-  text-align: center;
+
+.heal {
+  left:62%;
+  top:305px;
+}
+
+.charge {
+  left:80%;
+  top:263px;
+}
+
+.taunt {
+  left:80%;
   top:305px;
 }

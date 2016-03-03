@@ -1,8 +1,33 @@
 class Player
-  def initialize(id="#{Player.player_prefix}#{SecureRandom.uuid}")
+  def initialize(id="#{Player.player_prefix}#{SecureRandom.uuid}", start_hp=100, start_atk=10)
     @id = id
-    # @hp = 100
-    # @attack = 10
+    hp((hp == nil) ? start_hp : hp)
+    atk((atk == nil) ? start_atk : atk)
+  end
+
+  def attribute(key, val = nil)
+    if val != nil
+      REDIS.set("#{id}:#{key}", val)
+    end
+    REDIS.get("#{id}:#{key}")
+  end
+
+  def hp(val = nil)
+    res = attribute('hp', val)
+    if res != nil
+      res.to_f
+    else
+      nil
+    end
+  end
+
+  def atk(val = nil)
+    res = attribute('atk', val)
+    if res != nil
+      res.to_f
+    else
+      nil
+    end
   end
 
   def connection_id
@@ -28,8 +53,43 @@ class Player
     return nil
   end
 
-  def attack(opponent)
-    opponent.hp -= self.attack
+  def attack()
+    opponent.hp(opponent.hp-atk)
+    if @id == current_game.users[0]
+      activePlayer = "Red"
+    else
+      activePlayer = "Blue"
+    end
+    ActionCable.server.broadcast current_game.id, { action: "atkTxt", who: activePlayer, atk: atk}
+    return nil
+  end
+
+  def charge()
+    self.atk(self.atk+5)
+    return nil
+  end
+
+  def heal()
+    if(self.hp < 100)
+      if(self.hp > 93)
+        self.hp(100)
+      end
+      self.hp(self.hp+7)
+    else
+      self.hp(100)
+    end
+    return nil
+  end
+
+  def taunt()
+    opponent.atk(opponent.atk-5)
+    if @id == current_game.users[0]
+      activePlayer = "Red"
+    else
+      activePlayer = "Blue"
+    end
+    ActionCable.server.broadcast current_game.id, { action: "taunted", who: activePlayer}
+    return nil
   end
 
   def current_game

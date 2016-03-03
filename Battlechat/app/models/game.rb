@@ -13,7 +13,7 @@ class Game
   end
 
   def users
-    REDIS.lrange(@id, 0, 2)
+    REDIS.lrange(@id, 0, 1)
   end
 
   def players
@@ -21,7 +21,7 @@ class Game
   end
 
   def leave(user_id)
-    players = REDIS.lrange(@id, 0, 2).reject do |id|
+    players = REDIS.lrange(@id, 0, 1).reject do |id|
       id == user_id
     end
 
@@ -79,10 +79,8 @@ class Game
     REDIS.get("opponent_for:#{uuid}")
   end
 
-  def attacking(uuid, data)
-    # opponent = Game.opponent_for(uuid)
-    # @player1_hp -= 10;
+  def hpChanged(uuid, data, hp1, hp2)
     move_string = "#{uuid} HAS #{data}"
-    ActionCable.server.broadcast @id, {action: "attacking", msg: move_string, atk: uuid}
+    ActionCable.server.broadcast @id, {action: "hpChanged", msg: move_string, atk: uuid, hp1: hp1, hp2: hp2 }
   end
 end

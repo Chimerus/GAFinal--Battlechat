@@ -6,8 +6,8 @@ class Pokemon{
 		console.log(p1)
 		this.p2 = p2
 		console.log(p2)
-    this.player1 = ['Pikachu', 'images/pikachu.png',100,1]
-    this.player2 = ['Kabutops','images/kabutops.png',100,1]
+    this.player1 = ['Pikachu', 'images/pikachuBack.png',100,1]
+    this.player2 = ['Pikachu','images/pikachu.png',100,1]
   }
 
   // chooseEnemy() {
@@ -19,113 +19,106 @@ class Pokemon{
   game_start(){
   let game_start = new Audio('./sounds/battleTheme.mp3');
     game_start.play();
-  // var enemy = chooseEnemy();
-  // var enemy =['Kabutops','images/kabutops.png',100,1]
-  $("div#enemy p.name").text(this.player2[0]);
-  $("div#enemy p.health").text("Health: "+ this.player2[2]);
+  $("div#enemy p.name").text("Blue's "+this.player2[0]);
+  $("div#enemy span.health").text(this.player2[2]);
   $("#enemy_img").attr("src",this.player2[1]);
-  // $("#status_text").text(" A wild "+this.player2[0]+ " appeared!");
 
-  $("div#player p.name").text(this.player1[0]);
-  $("div#player p.health").text("Health: "+ this.player1[2]);
+  $("div#player p.name").text("Red's "+this.player1[0]);
+  $("div#player span.health").text(this.player1[2]);
   $("#player_img").attr("src",this.player1[1]);
   $("#status_text").text("I choose you, "+this.player2[0]+ "!");
   }
 
-  attack(player){
-    if (player == "Red"){
-      // console.log("Red Attacks!");
-      this.redAttack();
-    } else {
-      this.blueAttack();
-    }
+  game_over(){
+    game_start.pause();
   }
 
-
-  redAttack() { 
-  //10% chance to miss.
-  //90% chance to do between 5-30 damage. 
-  //after completed, says 'enemy will attack in 3 seconds' (buttons hidden during this time)
-  //check if enemy health is <= 0.
-  //If Enemy HP <=0, hide buttons to end game!
-  let acc = Math.floor((Math.random()*10)+1);
-  // if(acc === 1){
-    // $("#status_text").text("You Missed! Enemy will attack in 3 seconds...");
-    // $("#heal_btn,#attack_btn").hide();
-    // window.setTimeout(enemyAttack, 3000);
-  // } else {
-    // shake($("#enemy_img"));
-    // $("#status_text").text("");
-     let dmg = Math.floor((Math.random()*30*this.player1[3])+5);
-     this.pikaPi(dmg);
-     this.player2[2]-=dmg;
-     $("div#enemy p.health").text("Health: "+ this.player2[2]);
-     //Player win condition, hide buttons and stop music
-     // if(enemy[2] <=0){
-     //  document.getElementById("enemy_img").style.transform = "rotate(90deg)";
-     //  document.getElementById("status_text").innerHTML=enemy[0]+" has Fainted! <br><strong>You Win!</strong>";
-     //  $("#heal_btn,#attack_btn").hide();
-     //  game_start.pause();
-     // } else {
-     //  $("#heal_btn,#attack_btn").hide();
-     //  window.setTimeout(enemyAttack, 3000);
-     // }
-    }
-  // }
-
-  blueAttack() {
-  // 10% chance to miss.
-  // 90% chance to do between 5-30 damage. 
-  // after completed, if you aren't dead... buttons reappear.
-  // check if your health <= 0.
-  // If Player HP <=0, hide buttons to end game!
-  let acc = Math.floor((Math.random()*10)+1);
-  // if(acc === 1){
-  //   $("#status_text").text("Enemy Missed!");
-    // $("#heal_btn,#attack_btn").show();
-  // } else {
-    // shake($("#pikachu_img"));
-      // $("#status_text").text("");
-// updated to include attack multiplier for each pokemon
-      let dmg = Math.floor((Math.random()*30*this.player2[3])+5);
-      $("#status_text").text("Enemy did "+dmg+" damage!");
-      this.player1[2] -= dmg;
-      $("#player .health").text("Health: "+this.player1[2]);
-        //Player loss condition, hide buttons and stop music
-        // if(pikaHealth<=0){
-        //   //chnged to fade out from rotate since the pikachu image doesnt have a lower half!
-        //   $("#pikachu_img").fadeOut(1500);
-        //   document.getElementById("status_text").innerHTML="Pikachu has Fainted! <br><strong>You Lose!</strong>";
-        //   $("#heal_btn, #attack_btn").hide();
-        //   game_start.pause();
-        // } else {
-        //   $("#heal_btn,#attack_btn").show();
-        // }
-    // }
+  updateHp(hp1, hp2){
+    $("div#player span.health").text(hp1);
+    $("div#enemy span.health").text(hp2);
   }
 
-
-
-
-
-    //Changing the attack text by damage value for flavor
-  pikaPi(dmg){
-    if (dmg <11){
-      document.getElementById("status_text").innerHTML="Pikachu used Tail Whip for "+dmg+" damage! <br>Enemy will attack in 3 seconds...";
-    } else if(dmg<21){
-      document.getElementById("status_text").innerHTML="Pikachu used Thunder Wave for "+dmg+" damage! <br>Enemy will attack in 3 seconds...";
+  //Changing the attack text by damage value for flavor
+  pikaPi(who, dmg){
+    if (dmg <= 5){
+      document.getElementById("status_text").innerHTML= who+"'s Pikachu used Tail Whip for "+dmg+" damage!";
+    } else if(dmg<=15){
+      document.getElementById("status_text").innerHTML= who+"'s Pikachu used Thunder Shock for "+dmg+" damage!";
     } else {
       document.getElementById("status_text").innerHTML="<h2 style=\"color: yellow;\"><strong>PIKAA-CHUUUU!!!</strong></h2>";
       window.setTimeout(function(){
-        document.getElementById("status_text").innerHTML="Pikachu unleashes Thunderbolt for "+dmg+" damage! <br>Enemy will attack in 3 seconds...";
-      }, 1500);
+        document.getElementById("status_text").innerHTML= who+"'s Pikachu unleashes Thunderbolt for "+dmg+" damage!";
+      }, 800);
     }
   }
 
+  taunt(who) {
+    document.getElementById("status_text").innerHTML= who+"'s Pikachu growls, reducing opponent's attack!"
+  }
+
+ //animation functions!
+ shake(who){
+  let what
+  if (who == "Red") {
+    what = $("#enemy_img")
+  } else {
+    what = $("#player_img")
+  }
+
+ for(var i=0; i<3; i++){
+   if(i%2!=0){
+     what.animate({marginLeft: "+=40",},50,function(){
+       what.animate({marginLeft: "-=40",},50,function(){
+       })
+     });}
+   else{
+     what.animate({marginLeft: "-=40",},50,function(){
+       what.animate({marginLeft: "+=40",},50,function(){
+       })
+   });}  
+   }
+ }
+
+  heal(who){
+  let what
+  if (who == "Red") {
+    what = $("#player_img")
+  } else {
+    what = $("#enemy_img")
+  }
+
+ for(var i=0; i<3; i++){
+   if(i%2!=0){
+     what.animate({opacity: 1},100,function(){
+       what.animate({opacity: 0.5},100,function(){
+       })
+     });}
+   else{
+     what.animate({opacity: 0.5},100,function(){
+       what.animate({opacity: 1},100,function(){
+       })
+   });}  
+   }
+  document.getElementById("status_text").innerHTML= who+"'s Pikachu healed!"
+ }
+
+ charge(who) {
+  let what
+  if (who == "Red") {
+    what = $("#player_img")
+  } else {
+    what = $("#enemy_img")
+  }
+  what.animate({width: 200},750,function(){
+    what.animate({width: 150},500,function(){})
+    });
+  document.getElementById("status_text").innerHTML= who+"'s Pikachu increases its bloodlust!";
+  }
 
 };
 
 window.Pokemon = Pokemon;
+
   
 
 // (function(){
