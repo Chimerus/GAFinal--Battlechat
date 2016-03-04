@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   ActionCable.server.config.allowed_request_origins = ['http://104.131.48.188']
 
+
   def authorize
     redirect_to '/login' unless current_user
   end
