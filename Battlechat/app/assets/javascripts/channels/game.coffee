@@ -20,12 +20,28 @@ $(document).on 'ready page:load', ->
             @pokemon = new Pokemon(data.p1,data.p2)
             $(document).on "click",".attack", => 
               @perform 'attack', {}
+              $(".controls").hide()
+              setTimeout ->
+                $(".controls").show()
+              , 2500
             $(document).on "click",".heal", => 
               @perform 'heal', {}
+              $(".controls").hide()
+              setTimeout ->
+                $(".controls").show()
+              , 1200
             $(document).on "click",".charge", => 
               @perform 'charge', {}
+              $(".controls").hide()
+              setTimeout ->
+                $(".controls").show()
+              , 1800
             $(document).on "click",".taunt", => 
               @perform 'taunt', {}
+              $(".controls").hide()
+              setTimeout ->
+                $(".controls").show()
+              , 2200
             $('#bg_image').show()
             @pokemon.game_start()
             
