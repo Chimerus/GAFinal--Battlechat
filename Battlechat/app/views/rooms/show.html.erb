@@ -6,7 +6,11 @@
 </div>
 
 <form>
-  <input type="text" id="user" value="<%= current_user['name'] %>" hidden>
+  <input type="text" id="user" value="<%= current_user['username'] %>" hidden>
+    <br>
+    <input type="text" id="userid" value="<%= current_user['id'] %>" hidden>
+    <br>
+    <input type="text" id="userimage" value="<%= current_user['img'] %>" hidden>
     <br>
   <textarea id ="say" data-behavior="room_speaker" placeholder="Say Something"></textarea>
 </form>
@@ -15,7 +19,7 @@
 </div>
 <div id="gamestate2">
 </div>
-
+<audio src="/sounds/battleTheme.mp3" autoloop hidden id="battleTheme"></audio>
 <div id='bg_image'>
 
     <div id='player'>
@@ -36,6 +40,7 @@
 
     <span id='status_text'>
     </span>
+    <div class='controls'>
     <p class='attack btn'>
     Attack
     </p>
@@ -43,9 +48,10 @@
     Charge
     </p>
      <p class='taunt btn'>
-    Taunt
+    Growl
     </p>
     <p class='heal btn'>
     Heal
     </p>
+    </div>
   </div>

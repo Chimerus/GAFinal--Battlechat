@@ -9,7 +9,7 @@ class RoomChannel < ApplicationCable::Channel
   end
 
   def speak(data)
-    Message.create! content: data['message']
+    Message.create! image: data['image'], authorid: data['authorid'], author: data['author'], content: data['message']
   end
 
   

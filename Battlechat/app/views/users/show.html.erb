@@ -1,0 +1,14 @@
+<% if cookies.permanent[:auth_token] %>
+<div class="container">
+<h1><%= @user.username %></h1><br>
+  <% if @user.img %>
+  <img src="<%= @user.img %>" class="avatar"><br>
+  <% end %>
+<h3><%= @user.about %></h3><br>
+<h5>User since: <%= @user["created_at"] %></h5>
+  <% if current_user.id == @user.id %>
+  <a href="/users/<%= @user.id %>/edit" title="Edit">Edit Profile</a>
+  <% end %>
+<% else %>
+<p>How did you get here?</p>
+<% end %>

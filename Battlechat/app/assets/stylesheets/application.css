@@ -14,11 +14,18 @@
 *= require_self
 */
 
+.container {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+
 /*navbar*/
 .navbar {
   width: 80%;
   height: 4em;
   border: 2px solid black;
+  margin: 0 auto;
 }
 
 .right {
@@ -33,7 +40,9 @@
   overflow: scroll;
 }
 
-
+.usericon {
+  max-width:50px; height:auto;
+}
 /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */

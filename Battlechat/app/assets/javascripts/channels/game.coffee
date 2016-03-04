@@ -7,7 +7,7 @@ $(document).on 'ready page:load', ->
         @printMessage("Waiting for opponent...")
       disconnected: ->
         # Called when the subscription has been terminated by the server
-        @printMessage("Game Over")
+        @printMessage("Game Over!")
         $('#bg_image').hide()
         @pokemon.game_over()
       received: (data) ->
@@ -29,6 +29,12 @@ $(document).on 'ready page:load', ->
             $('#bg_image').show()
             @pokemon.game_start()
             
+          when "game_over"
+            $(".controls").hide()
+            @gameLog(data.who+" Wins! Game Over!")
+            @pokemon.game_over(data.who)
+            # window.setTimeout($('#bg_image').hide(), 3000)
+
           when "hpChanged"
             @pokemon.updateHp(data.hp1, data.hp2)
             @gameLog(data.msg)

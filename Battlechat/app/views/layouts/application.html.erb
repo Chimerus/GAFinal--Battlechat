@@ -5,7 +5,7 @@
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
   </head>
 
@@ -20,7 +20,7 @@
           <div class="right">
             <% if current_user %>
               <h5>
-                Welcome <a href="/users/<%= current_user['id'] %>"><%= current_user['name'] %></a>!
+                Welcome <a href="/users/<%= current_user['id'] %>"><%= current_user['username'] %></a>!
                 <a id="logout" href="/logout">Logout</a>
               </h5>
             <% else %>

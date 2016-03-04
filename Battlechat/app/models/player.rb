@@ -61,6 +61,9 @@ class Player
       activePlayer = "Blue"
     end
     ActionCable.server.broadcast current_game.id, { action: "atkTxt", who: activePlayer, atk: atk}
+    if opponent.hp() <= 0
+      ActionCable.server.broadcast current_game.id, { action: "game_over", who: activePlayer}
+    end
     return nil
   end
 

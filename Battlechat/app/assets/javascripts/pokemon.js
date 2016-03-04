@@ -8,6 +8,7 @@ class Pokemon{
 		console.log(p2)
     this.player1 = ['Pikachu', 'images/pikachuBack.png',100,1]
     this.player2 = ['Pikachu','images/pikachu.png',100,1]
+    // var battleTheme = new Audio('./sounds/battleTheme.mp3');
   }
 
   // chooseEnemy() {
@@ -17,8 +18,7 @@ class Pokemon{
   // }
 
   game_start(){
-  let game_start = new Audio('./sounds/battleTheme.mp3');
-    game_start.play();
+  document.getElementById('battleTheme').play();
   $("div#enemy p.name").text("Blue's "+this.player2[0]);
   $("div#enemy span.health").text(this.player2[2]);
   $("#enemy_img").attr("src",this.player2[1]);
@@ -29,8 +29,21 @@ class Pokemon{
   $("#status_text").text("I choose you, "+this.player2[0]+ "!");
   }
 
-  game_over(){
-    game_start.pause();
+  game_over(who){
+    let what
+    if (who == "Red") {
+      what = $("#enemy_img")
+    } else {
+      what = $("#player_img")
+    }
+    document.getElementById('battleTheme').pause();
+    what.fadeOut(1500);
+    window.setTimeout(function(){
+      document.getElementById("status_text").innerHTML= who+" is victorious!";
+    },805);
+    window.setTimeout(function(){
+      $('#bg_image').hide();
+    }, 4000);
   }
 
   updateHp(hp1, hp2){
@@ -53,7 +66,7 @@ class Pokemon{
   }
 
   taunt(who) {
-    document.getElementById("status_text").innerHTML= who+"'s Pikachu growls, reducing opponent's attack!"
+    document.getElementById("status_text").innerHTML= who+"'s Pikachu growls menacingly, reducing opponent's attack!"
   }
 
  //animation functions!
@@ -99,7 +112,7 @@ class Pokemon{
        })
    });}  
    }
-  document.getElementById("status_text").innerHTML= who+"'s Pikachu healed!"
+  document.getElementById("status_text").innerHTML= who+"'s Pikachu heals!"
  }
 
  charge(who) {
@@ -109,10 +122,20 @@ class Pokemon{
   } else {
     what = $("#enemy_img")
   }
-  what.animate({width: 200},750,function(){
-    what.animate({width: 150},500,function(){})
+  what.animate({opacity: 0.5},1020,function(){
+    what.animate({opacity: 1},500,function(){})
     });
   document.getElementById("status_text").innerHTML= who+"'s Pikachu increases its bloodlust!";
+  }
+
+  fade(who) {
+    let what
+    if (who == "Red") {
+      what = $("#enemy_img")
+    } else {
+      what = $("#player_img")
+    }
+    what.fadeOut(1500);
   }
 
 };

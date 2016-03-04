@@ -10,9 +10,15 @@ class UsersController < ApplicationController
   def new
   end
 
+  def show
+    @user = User.find(params[:id])
+    render :show
+  end
+
   def edit
      id = params[:id]
     @user = User.find(id)
+    render :edit
   end
 
   def index
@@ -39,7 +45,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       cookies.permanent[:auth_token] = @user.auth_token
-      flash[:notice] = "Welcome to Battlechat "+@user.name+"!"
+      flash[:notice] = "Welcome to Battlechat "+@user.username+"!"
       redirect_to '/battlechat'
     else
       email = User.where(email: params['user']['email']).first
@@ -59,7 +65,7 @@ class UsersController < ApplicationController
 private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password)
+    params.require(:user).permit(:username, :email, :password, :img, :about)
   end
 
 end
