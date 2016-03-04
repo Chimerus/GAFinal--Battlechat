@@ -45,7 +45,6 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       cookies.permanent[:auth_token] = @user.auth_token
-      flash[:notice] = "Welcome to Battlechat "+@user.username+"!"
       redirect_to '/battlechat'
     else
       email = User.where(email: params['user']['email']).first
