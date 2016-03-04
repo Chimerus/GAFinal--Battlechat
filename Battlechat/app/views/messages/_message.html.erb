@@ -3,7 +3,7 @@
 <% if message.image != "" %>
 <img src="<%= message.image %>" alt="image" class="usericon">
 <% end %>
-<p><a href="/users/<%= message.authorid %>" title="username"><%= message.author %>: </a>
+<p class="msg"><a href="/users/<%= message.authorid %>" title="username"><%= message.author %>: </a>
 <%= message.content %></p>
 </div>
 <% end %>

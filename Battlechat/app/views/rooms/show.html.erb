@@ -1,10 +1,11 @@
-<h1>Rooms#show</h1>
-<p>Find me in app/views/rooms/show.html.erb</p>
+<div id="welcome"><h1>Welcome to the Arena!</h1></div>
+<div id="chatroom">
+<p><strong>Chat here with your fellow trainers, but be ready for battle!</strong></p>
 
 <div id="messages">
     <%= render @messages %>
 </div>
-
+</div>
 <form>
   <input type="text" id="user" value="<%= current_user['username'] %>" hidden>
     <br>
@@ -12,9 +13,8 @@
     <br>
     <input type="text" id="userimage" value="<%= current_user['img'] %>" hidden>
     <br>
-  <textarea id ="say" data-behavior="room_speaker" placeholder="Say Something"></textarea>
+  <textarea id ="say" data-behavior="room_speaker" placeholder="Say Something!"></textarea>
 </form>
-
 <div id="gamestate">
 </div>
 <div id="gamestate2">

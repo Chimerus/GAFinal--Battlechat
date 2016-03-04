@@ -33,7 +33,6 @@ $(document).on 'ready page:load', ->
             $(".controls").hide()
             @gameLog(data.who+" Wins! Game Over!")
             @pokemon.game_over(data.who)
-            # window.setTimeout($('#bg_image').hide(), 3000)
 
           when "hpChanged"
             @pokemon.updateHp(data.hp1, data.hp2)
@@ -63,4 +62,4 @@ $(document).on 'ready page:load', ->
         $("#gamestate").html("<p>#{message}</p>")
 
       gameLog: (message) ->
-        $("#gamestate2").append("<p>#{message}</p>")
+        $("#gamestate2").append("<p class=\"log\">#{message}</p>").scrollTop(9999999)

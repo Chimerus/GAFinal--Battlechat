@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  ActionCable.server.config.allowed_request_origins = ['http://104.131.48.188']
+  ActionCable.server.config.allowed_request_origins = ['http://104.131.48.188', 'http://localhost:3000']
 
 
   def authorize

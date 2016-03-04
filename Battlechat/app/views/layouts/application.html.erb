@@ -13,32 +13,30 @@
 
   <div class="navbar">
         <% if current_user %>
-          <a href="/battlechat">Battlechat</a>
+          <a href="/battlechat"><img src="/images/logo.png" alt="Battlechat_logo" id="logo"></a>
         <% else %>
-          <a href="/">Battlechat</a>
+          <a href="/"><img src="/images/logo.png" alt="Battlechat_logo" id="logo"></a>
         <% end %>
           <div class="right">
             <% if current_user %>
-              <h5>
+              <strong><h5>
                 Welcome <a href="/users/<%= current_user['id'] %>"><%= current_user['username'] %></a>!
-                <a id="logout" href="/logout">Logout</a>
-              </h5>
+                <a id="logout" class="nav-btn" href="/logout"><button>Logout</button></a>
+              </h5></strong>
             <% else %>
-              <a href="/users/new">
-                Sign Up!
-              </a><span>|</span>
-              <button id="myBtn">Sign-In</button>
+              <a href="/users/new"><button id="signUp" class="nav-btn">Sign Up!</button></a>
+              <button id="myBtn" class="nav-btn">Sign-In</button>
             <% end %>
           </div>
   </div>
 
-  <div class="container" style="margin-left: 0; ">
+  <div class="container" style="border:none; margin: 5px auto;">
    <% flash.each do |key, value| %>
-  <div style="margin-right: 26px; " class="alert alert-info">
+  <div style="border:none; padding: 5px;" class="alert alert-info">
    <a href="#" data-dismiss="alert" class="close">X</a>
-     <ul  style="list-style: none ;">
-       <li style= "list_style: none;">
-       <%= value %>
+     <ul  style="list-style: none;">
+       <li style="list-style: none; padding: 10px;">
+       <strong><%= value %></strong>
         </li>
        </ul>
   </div>

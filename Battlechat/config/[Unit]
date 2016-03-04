@@ -1,0 +1,11 @@
+[Unit]
+Description=Battlechat
+After=postgresql.sql redis-server.service
+Requires=postgresql.sql redis-server.service
+
+[Service]
+ExecStartPre=/bin/bash -c 'cd /app && git pull origin tminus && bundle'
+ExecStart=/bin/bash -c 'cd /app && rails s -b 0.0.0.0 -p80'
+
+[Install]
+WantedBy=multi-user.service
