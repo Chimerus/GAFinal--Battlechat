@@ -14,4 +14,4 @@ RUN /bin/bash -c 'cd /app && bundle'
 
 EXPOSE 80
 
-CMD /bin/bash -c 'cd /app && rails s'
+CMD /bin/bash -c 'cd /app && rails s -b 0.0.0.0 -p80'
