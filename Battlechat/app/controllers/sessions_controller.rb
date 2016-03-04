@@ -16,7 +16,9 @@ class SessionsController < ApplicationController
 
   def destroy 
     cookies.delete(:auth_token)
+    session.clear
     GameChannel.on_unsubscribe
+    RoomChannel.on_unsubscribe
     flash[:notice] = "Successfully logged out!"
     redirect_to '/'
   end
