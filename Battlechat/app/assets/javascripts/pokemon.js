@@ -1,6 +1,7 @@
 "use strict";
 
 class Pokemon{
+  // initializer
 	constructor(p1, p2) {
 		this.p1 = p1
 		console.log(p1)
@@ -8,9 +9,9 @@ class Pokemon{
 		console.log(p2)
     this.player1 = ['Pikachu', 'images/pikachuBack.png',100,1]
     this.player2 = ['Pikachu','images/pikachu.png',100,1]
-    // var battleTheme = new Audio('./sounds/battleTheme.mp3');
   }
 
+  // TODO later: add different pokemon in!
   // chooseEnemy() {
   // //picks random enemy from pokemon array. populates initial page with their data. 
   // // var chosen = Math.floor((Math.random()*pokemon.length));
@@ -29,6 +30,7 @@ class Pokemon{
   $("#status_text").text("I choose you, "+this.player2[0]+ "!");
   }
 
+  // on game over, stop music, hide elements so can't be clicked on.
   game_over(who){
     let what
     if (who == "Red") {
@@ -46,6 +48,7 @@ class Pokemon{
     }, 4000);
   }
 
+  // change hp by what happened
   updateHp(hp1, hp2){
     $("div#player span.health").text(hp1);
     $("div#enemy span.health").text(hp2);
@@ -65,6 +68,7 @@ class Pokemon{
     }
   }
 
+  // attack debuff
   taunt(who) {
     document.getElementById("status_text").innerHTML= who+"'s Pikachu growls menacingly, reducing opponent's attack!"
   }
@@ -141,7 +145,7 @@ class Pokemon{
 };
 
 window.Pokemon = Pokemon;
-
+// TODO add additional Pokemon other than Pikachu! Would like them to be able to choose their pokemon.
 // 	var pokemon = [
 // 		['Voltorb','images/voltorb.png',100,1],
 // 		['Charizard','images/charizard.png',200,1.75],

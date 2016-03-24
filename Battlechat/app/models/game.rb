@@ -1,4 +1,4 @@
-
+# Handles game matchmaking with REDIS
 class Game
   def initialize(id = "#{Game.game_prefix}#{SecureRandom.base64()}")
     @id = id

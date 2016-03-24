@@ -9,8 +9,10 @@ $(document).on 'ready page:load', ->
         # Called when the subscription has been terminated by the server
 
       received: (data) ->
+        # move the chat along to the newest message
         $('#messages').append(data['message']).scrollTop(9999999)
 
+      # Print the message to chatroom when hit enter, also saves to db
       speak: (image, authorid, author, message) ->
         @perform 'speak', image: image , authorid: authorid, author: author, message: message 
 
