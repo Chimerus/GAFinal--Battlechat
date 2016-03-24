@@ -15,9 +15,14 @@ You will either be Red or Blue. Red is the Pikachu facing away toward the bottom
 
 Each Pikachu starts with 100 HP, whoever has their hp reduced to 0 loses.
 There are 4 actions: 
+/n
 1.Attack - Default hits opponent for 10 HP. 
+/n
 2.Charge - Increases your attack by 5 points.
+/n
 3.Heal - Heals your Pikachu by 7 HP, to maximum 100 HP.
+/n
 4.Growl - Reduce opponent's attack by 5 points.
+/n
 
 Each action takes a different amount of time! Attack is longest, then Growl, followed by Charge, and fastest is Heal.
