@@ -6,7 +6,8 @@ class GameChannel < ApplicationCable::Channel
     stream_from @game.id
     if @game.players.length == 2
       @game.start(@game.users[0], @game.users[1])
-
+      # TODO tell player which one they are, before they do an action
+      # on action, it says who did what, so player should be able to figure it out.
       # if @player.id == @game.users[0]
         @game.users[0] = "Red"
       # else
@@ -64,7 +65,7 @@ class GameChannel < ApplicationCable::Channel
     ActionCable.server.broadcast @game.id, { action: "taunted", msg: @activePlayer }
     ActionCable.server.broadcast @game.id, { action: "shake", msg: @activePlayer }
   end
-
+# TODO DRY up code
   # def close()
   #   Socket.close()
   # end

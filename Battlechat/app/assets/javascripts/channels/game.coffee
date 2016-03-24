@@ -18,6 +18,8 @@ $(document).on 'ready page:load', ->
             @printMessage("Battle Start!")
             # new game
             @pokemon = new Pokemon(data.p1,data.p2)
+            # delegate event handlers to the document
+            # when they click one of the 4 options, it hides the controls to disable multiple rapid clicks
             $(document).on "click",".attack", => 
               @perform 'attack', {}
               $(".controls").hide()
@@ -44,7 +46,7 @@ $(document).on 'ready page:load', ->
               , 2200
             $('#bg_image').show()
             @pokemon.game_start()
-            
+          # More game logic and message logs
           when "game_over"
             $(".controls").hide()
             @gameLog(data.who+" Wins! Game Over!")
