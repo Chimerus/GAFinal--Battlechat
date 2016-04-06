@@ -12,15 +12,9 @@ class Pokemon{
 
     this.player1 = ['Pikachu', 'images/pikachuBack.png',100,1]
     this.player2 = p[Math.floor((Math.random()*p.length))];
-    // this.player2 = ['Eevee','images/eevee.png',100,1]
   }
 
-  // TODO later: add different pokemon in!
-  // chooseEnemy() {
-  // //picks random enemy from pokemon array. populates initial page with their data. 
-  // // var chosen = Math.floor((Math.random()*pokemon.length));
-  // return ['Kabutops','images/kabutops.png',100,1];
-  // }
+  // TODO later: sync the random pokemon to both players! maybe different stats as well
 
   game_start(){
   document.getElementById('battleTheme').play();
@@ -149,7 +143,7 @@ class Pokemon{
 };
 
 window.Pokemon = Pokemon;
-// TODO add additional Pokemon other than Pikachu! Would like them to be able to choose their pokemon.
+// TODO Would like them to be able to choose their pokemon.
 	// var pokemon = [
 	// 	['Voltorb','images/voltorb.png',100,1],
 	// 	['Charizard','images/charizard.png',200,1.75],
