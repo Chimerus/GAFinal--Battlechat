@@ -7,8 +7,12 @@ class Pokemon{
 		console.log(p1)
 		this.p2 = p2
 		console.log(p2)
+    // random pokemon
+    let p = [['Voltorb','images/voltorb.png',100,1],['Mew','images/mew.png',100, 1],['Kabutops','images/kabutops.png', 100,1],['Eevee','images/eevee.png',100,1],['Pikachu','images/pikachu.png',100,1]]
+
     this.player1 = ['Pikachu', 'images/pikachuBack.png',100,1]
-    this.player2 = ['Pikachu','images/pikachu.png',100,1]
+    this.player2 = p[Math.floor((Math.random()*p.length))];
+    // this.player2 = ['Eevee','images/eevee.png',100,1]
   }
 
   // TODO later: add different pokemon in!
@@ -146,16 +150,17 @@ class Pokemon{
 
 window.Pokemon = Pokemon;
 // TODO add additional Pokemon other than Pikachu! Would like them to be able to choose their pokemon.
-// 	var pokemon = [
-// 		['Voltorb','images/voltorb.png',100,1],
-// 		['Charizard','images/charizard.png',200,1.75],
-// 		['Gyarados','images/gyarados.png',125,1.30],
-// 		['Mew','images/mew.png',75,1.25],
-// 		['Geodude','images/geodude.png',90,1],
-// 		['Snorlax','images/snorlax.png',110,1.10],
-// 		['Kabutops','images/kabutops.png',95,1],
-// 		['Eevee','images/eevee.png',60,0.75],
-// 		['Beedrill','images/beedrill.png',70,0.75],
-// 		['Magikarp','images/magikarp.gif',40,0.5],
-// 		['Gastly','images/gastly.png',50,0.5]
+	// var pokemon = [
+	// 	['Voltorb','images/voltorb.png',100,1],
+	// 	['Charizard','images/charizard.png',200,1.75],
+	// 	['Gyarados','images/gyarados.png',125,1.30],
+	// 	['Mew','images/mew.png',75,1.25],
+	// 	['Geodude','images/geodude.png',90,1],
+	// 	['Snorlax','images/snorlax.png',110,1.10],
+	// 	['Kabutops','images/kabutops.png',95,1],
+	// 	['Eevee','images/eevee.png',60,0.75],
+	// 	['Beedrill','images/beedrill.png',70,0.75],
+	// 	['Magikarp','images/magikarp.gif',40,0.5],
+	// 	['Gastly','images/gastly.png',50,0.5],
+ //    ['Pikachu','images/pikachu.png',100,1]
 
