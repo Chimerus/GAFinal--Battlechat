@@ -249,6 +249,10 @@ body {
 
 }
 
+.texty {
+  background-color: #F5E45F;
+}
+
 .btn {
   cursor: pointer;
   color: white;
