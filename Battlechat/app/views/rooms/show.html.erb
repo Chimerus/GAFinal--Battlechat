@@ -1,12 +1,11 @@
 <div id="welcome"><h1>Welcome to the Arena!</h1></div>
 <div id="chatroom">
-<p><strong>Chat here with your fellow trainers, but be ready for battle!</strong></p>
+  <p class="chathead"><strong>> Chat here with your fellow trainers, but be ready for battle!</strong></p>
 
-<div id="messages">
+  <div id="messages">
     <%= render @messages %>
-</div>
-</div>
-<form>
+  </div>
+<form class="formy">
   <input type="text" id="user" value="<%= current_user['username'] %>" hidden>
     <br>
     <input type="text" id="userid" value="<%= current_user['id'] %>" hidden>
@@ -15,6 +14,7 @@
     <br>
   <textarea id ="say" data-behavior="room_speaker" placeholder="Say Something!"></textarea>
 </form>
+</div>
 <div id="gamestate">
 </div>
 <div id="gamestate2">

@@ -68,17 +68,39 @@ body {
 }
 
 #welcome {
+  margin: 10px auto;
   text-align: center;
+  color: black;
+  background-color: ghostwhite;
+  border: 5px solid #15155E;
+  border-radius: 30px;
 }
 
 #chatroom {
   width: 40%;
   background-color: ghostwhite;
+  border: 5px solid #15155E;
+}
+
+.formy {
+  margin-top: -35px;
+}
+
+.chathead {
+  padding: 5px;
+  margin: -4px -4px 5px;
+  color: #15155E;
+  background-color: #F5E45F;
+  border: 5px solid #15155E;
 }
 
 #say {
   height: 5em;
-  width: 25%;
+  width: 98%;
+  border-top-style: 15px solid #15155E;
+  border-right-style: none;
+  border-bottom-style: none;
+  border-left-style: none;
 }
 
 #battle {
