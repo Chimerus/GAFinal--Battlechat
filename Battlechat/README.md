@@ -33,3 +33,8 @@ BUNDLED WITH
 
 # For project information, see the Github Readme
 https://github.com/Chimerus/GAFinal--Battlechat
+
+#sources:
+Background: http://orig11.deviantart.net/2b16/f/2011/141/4/7/pokeball_background_by_radiance_chan-d3gv45a.png
+Pokemon: Previous assignment, unknown.
+All other art assets are the property of their respective owners.
